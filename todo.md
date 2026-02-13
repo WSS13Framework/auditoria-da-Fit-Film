@@ -24,3 +24,11 @@
 - [ ] Agente de Vendas
 - [ ] Agente de Planejamento
 - [ ] Sugestões automáticas baseadas nos dados reais
+
+## Correções v3 - CRM e Áudio
+- [ ] CRM: Pegar contatos reais dos dados extraídos (FRONERI, EMBALAFITAS, FENIX, IFCO, etc.)
+- [ ] CRM: Regras de negócio claras (status, inadimplência, valores, classificação)
+- [ ] CRM: Organização funcional com filtros e ações
+- [ ] Áudio: Implementar speech-to-text (ouvir perguntas por voz)
+- [ ] Áudio: Implementar text-to-speech funcional (falar respostas)
+- [ ] Áudio: Botão de microfone para gravar perguntas

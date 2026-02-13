@@ -1,8 +1,11 @@
-// Multi-Agentes Especializados com OpenAI GPT-4o + TTS
+// Multi-Agentes Especializados com OpenAI GPT-4o + TTS + STT
 const OPENAI_API_KEY = window.FITFILM_CONFIG?.OPENAI_API_KEY || '';
 
 let audioEnabled = true;
 let currentAudio = null;
+let mediaRecorder = null;
+let audioChunks = [];
+let isRecording = false;
 
 const DADOS_CONTEXTO = `
 DADOS FINANCEIROS REAIS DA AUDITORIA FIT FILM (Jan/2024 - Dez/2025):
@@ -41,13 +44,23 @@ ANOMALIA 3 - CRISE DE QUALIDADE (Marco/2025):
 
 CARTEIRA DE CLIENTES/FORNECEDORES:
 - FRONERI (maior debito - R$ 156.762,76)
-- IFCO SYSTEMS DO BRASIL (Servicos embalagem - R$ 42.000)
-- EMBALAFITAS (Fornecedor - R$ 17.502)
-- FENIX (Cliente - R$ 52.300)
-- EMP. BRASILEIRA DE DISTRIBUICAO (R$ 67.000)
-- NOVA PROSPER (Distribuidor)
-- FORTYMIX (Distribuidor embalagens)
-- TUDO LEGAL IND. E COMERCIO
+- TUPPERWARE (R$ 95.000 - inadimpl. 35%)
+- NOVA PROSPER DIST. (R$ 89.000 - inadimpl. 30%)
+- ROCCO (R$ 75.000 - inadimpl. 35%)
+- EMP. BRASILEIRA DE DISTRIBUICAO (R$ 67.000 - inadimpl. 37,3%)
+- INDUSTRIA CARVALHO (R$ 62.000 - inadimpl. 35%)
+- VIVA EMBALAGENS (R$ 55.000 - fornecedor OK)
+- FENIX (R$ 52.300 - quitado)
+- IFCO SYSTEMS (R$ 42.000 - fornecedor OK)
+- DISTRIFAR (R$ 45.000 - inadimpl. 10%)
+- FRICAL (R$ 38.000 - inadimpl. 10%)
+- FORTYMIX (R$ 35.000 - inadimpl. 10%)
+- UNIPE INDUSTRIA (R$ 32.000 - inadimpl. 10%)
+- DI-SANTINNI (R$ 28.000 - inadimpl. 10%)
+- ICONIC LUBRIFICANTES (R$ 24.000 - inadimpl. 10%)
+- EMBALAFITAS (R$ 17.502 - fornecedor quitado)
+- TOP FOX COMERCIO (R$ 18.000 - inadimpl. 10%)
+- GW REPRESENTACOES (R$ 15.000 - representante OK)
 
 TRANSACOES REAIS:
 - DEBITO 138.000 REF. 156.762,76 FRONERI - AJUSTE FLUXO CAIXA
@@ -105,7 +118,7 @@ SUA PERSONA:
 
 FORMATO:
 - Titulos claros com emojis profissionais
-- Numeros sempre com contexto
+- Numeros sempre com contexto e comparacao com benchmarks
 - Termine SEMPRE com "Proximos Passos" ou "Recomendacao Executiva"
 - Cenarios: Otimista / Realista / Pessimista quando relevante
 - Benchmarks do setor de embalagens
@@ -196,7 +209,7 @@ Object.keys(AGENT_PROMPTS).forEach(agent => {
     conversations[agent] = [{ role: 'system', content: AGENT_PROMPTS[agent] }];
 });
 
-// Enviar mensagem para OpenAI
+// ========== OPENAI CHAT ==========
 async function callOpenAI(agent, userMessage) {
     conversations[agent].push({ role: 'user', content: userMessage });
     try {
@@ -222,47 +235,232 @@ async function callOpenAI(agent, userMessage) {
         return reply;
     } catch (error) {
         console.error('Erro OpenAI:', error);
-        return 'Desculpe, ocorreu um erro: ' + error.message;
+        return 'Desculpe, ocorreu um erro ao processar sua pergunta: ' + error.message;
     }
 }
 
-// Text-to-Speech com OpenAI
+// ========== TEXT-TO-SPEECH (FALAR RESPOSTAS) ==========
 async function speakText(text) {
     if (!audioEnabled) return;
-    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-    // Limpar markdown do texto
+    stopAudio();
+    // Limpar markdown
     const cleanText = text.replace(/[#*`_~\[\]()>|]/g, '').replace(/\n+/g, '. ').substring(0, 4000);
+    
+    // Atualizar botão para mostrar que está carregando
+    const activeBtn = document.querySelector('.btn-speak.active');
+    
     try {
         const response = await fetch('https://api.openai.com/v1/audio/speech', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OPENAI_API_KEY },
             body: JSON.stringify({
-                model: 'tts-1',
+                model: 'tts-1-hd',
                 input: cleanText,
                 voice: 'onyx',
                 response_format: 'mp3',
                 speed: 1.0
             })
         });
-        if (!response.ok) throw new Error('TTS Error');
+        if (!response.ok) throw new Error('TTS Error: ' + response.status);
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
         currentAudio = new Audio(url);
+        currentAudio.onended = () => { 
+            currentAudio = null;
+            updateSpeakButtons(false);
+        };
         currentAudio.play();
+        updateSpeakButtons(true);
     } catch (e) {
         console.error('TTS Error:', e);
+        // Fallback: usar Web Speech API do navegador
+        speakWithBrowser(cleanText);
     }
+}
+
+function speakWithBrowser(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text.substring(0, 2000));
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        // Tentar encontrar voz em português
+        const voices = window.speechSynthesis.getVoices();
+        const ptVoice = voices.find(v => v.lang.startsWith('pt'));
+        if (ptVoice) utterance.voice = ptVoice;
+        utterance.onend = () => updateSpeakButtons(false);
+        window.speechSynthesis.speak(utterance);
+        updateSpeakButtons(true);
+    }
+}
+
+function stopAudio() {
+    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    updateSpeakButtons(false);
+}
+
+function updateSpeakButtons(playing) {
+    document.querySelectorAll('.btn-speak').forEach(btn => {
+        btn.classList.toggle('playing', playing);
+    });
 }
 
 function toggleGlobalAudio() {
     audioEnabled = !audioEnabled;
-    document.querySelectorAll('#global-audio-icon').forEach(el => {
-        el.textContent = audioEnabled ? 'volume_up' : 'volume_off';
-    });
-    if (!audioEnabled && currentAudio) { currentAudio.pause(); currentAudio = null; }
+    const icon = document.getElementById('global-audio-icon');
+    if (icon) icon.textContent = audioEnabled ? 'volume_up' : 'volume_off';
+    const label = document.getElementById('global-audio-label');
+    if (label) label.textContent = audioEnabled ? 'Áudio Ativo' : 'Áudio Desligado';
+    if (!audioEnabled) stopAudio();
 }
 
-// Formatar resposta markdown
+// ========== SPEECH-TO-TEXT (OUVIR CEO FALAR) ==========
+async function startRecording(agent) {
+    if (isRecording) { stopRecording(agent); return; }
+    
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            audio: { 
+                channelCount: 1, 
+                sampleRate: 16000,
+                echoCancellation: true,
+                noiseSuppression: true 
+            } 
+        });
+        
+        audioChunks = [];
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm;codecs=opus' });
+        
+        mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) audioChunks.push(e.data);
+        };
+        
+        mediaRecorder.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop());
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            
+            if (audioBlob.size < 1000) {
+                showMicStatus(agent, 'Áudio muito curto. Tente novamente.', 'error');
+                return;
+            }
+            
+            showMicStatus(agent, 'Transcrevendo...', 'processing');
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', audioBlob, 'audio.webm');
+                formData.append('model', 'whisper-1');
+                formData.append('language', 'pt');
+                formData.append('response_format', 'json');
+                
+                const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + OPENAI_API_KEY },
+                    body: formData
+                });
+                
+                if (!response.ok) throw new Error('Whisper Error: ' + response.status);
+                
+                const data = await response.json();
+                const transcription = data.text?.trim();
+                
+                if (transcription) {
+                    const input = document.getElementById('input-' + agent);
+                    if (input) {
+                        input.value = transcription;
+                        showMicStatus(agent, 'Transcrito! Enviando...', 'success');
+                        setTimeout(() => {
+                            sendAgentMsg(agent);
+                            hideMicStatus(agent);
+                        }, 500);
+                    }
+                } else {
+                    showMicStatus(agent, 'Não consegui entender. Tente novamente.', 'error');
+                    setTimeout(() => hideMicStatus(agent), 3000);
+                }
+            } catch (e) {
+                console.error('STT Error:', e);
+                showMicStatus(agent, 'Erro na transcrição: ' + e.message, 'error');
+                setTimeout(() => hideMicStatus(agent), 3000);
+            }
+        };
+        
+        mediaRecorder.start(250);
+        isRecording = true;
+        updateMicButton(agent, true);
+        showMicStatus(agent, 'Gravando... Fale agora!', 'recording');
+        
+    } catch (e) {
+        console.error('Mic Error:', e);
+        showMicStatus(agent, 'Erro ao acessar microfone. Verifique permissões.', 'error');
+        setTimeout(() => hideMicStatus(agent), 3000);
+    }
+}
+
+function stopRecording(agent) {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+    }
+    isRecording = false;
+    updateMicButton(agent, false);
+}
+
+function updateMicButton(agent, recording) {
+    const btn = document.getElementById('mic-' + agent);
+    if (!btn) return;
+    if (recording) {
+        btn.classList.add('recording');
+        btn.innerHTML = '<span class="material-icons-outlined" style="font-size:20px;color:#f44336;">stop</span>';
+        btn.title = 'Parar gravação';
+    } else {
+        btn.classList.remove('recording');
+        btn.innerHTML = '<span class="material-icons-outlined" style="font-size:20px;">mic</span>';
+        btn.title = 'Falar com o agente';
+    }
+}
+
+function showMicStatus(agent, text, type) {
+    let el = document.getElementById('mic-status-' + agent);
+    if (!el) {
+        const inputArea = document.getElementById('input-' + agent)?.parentElement;
+        if (!inputArea) return;
+        el = document.createElement('div');
+        el.id = 'mic-status-' + agent;
+        el.style.cssText = 'padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px;';
+        inputArea.parentElement.insertBefore(el, inputArea);
+    }
+    const colors = {
+        recording: { bg: '#f4433620', color: '#f44336', icon: 'fiber_manual_record' },
+        processing: { bg: '#ff980020', color: '#ff9800', icon: 'hourglass_empty' },
+        success: { bg: '#4caf5020', color: '#4caf50', icon: 'check_circle' },
+        error: { bg: '#f4433620', color: '#f44336', icon: 'error' }
+    };
+    const c = colors[type] || colors.processing;
+    el.style.background = c.bg;
+    el.style.color = c.color;
+    el.innerHTML = `<span class="material-icons-outlined" style="font-size:16px;${type==='recording'?'animation:blink 1s infinite;':''}">${c.icon}</span> ${text}`;
+    el.style.display = 'flex';
+}
+
+function hideMicStatus(agent) {
+    const el = document.getElementById('mic-status-' + agent);
+    if (el) el.style.display = 'none';
+}
+
+// ========== UI HELPERS ==========
+const AGENT_LABELS = {
+    master: { avatar: 'CD', title: 'Cientista de Dados', color: 'linear-gradient(135deg, #e91e8c, #00bcd4)' },
+    inadimplencia: { avatar: 'IN', title: 'Ag. Inadimplência', color: '#f44336' },
+    custos: { avatar: 'CU', title: 'Ag. Custos', color: '#ff9800' },
+    qualidade: { avatar: 'QA', title: 'Ag. Qualidade', color: '#00bcd4' },
+    vendas: { avatar: 'VD', title: 'Ag. Vendas', color: '#4caf50' },
+    planejamento: { avatar: 'PL', title: 'Ag. Planejamento', color: '#fdd835' }
+};
+
+function escHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
 function formatMD(text) {
     return text
         .replace(/### (.*?)(\n|$)/g, '<h4 style="margin:12px 0 6px;color:#e91e8c;font-size:14px;">$1</h4>')
@@ -277,29 +475,25 @@ function formatMD(text) {
         .replace(/\n/g, '<br>');
 }
 
-function escHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-
-const AGENT_LABELS = {
-    master: { avatar: 'CD', title: 'Cientista de Dados', color: 'linear-gradient(135deg, #e91e8c, #00bcd4)' },
-    inadimplencia: { avatar: 'IN', title: 'Ag. Inadimplencia', color: '#f44336' },
-    custos: { avatar: 'CU', title: 'Ag. Custos', color: '#ff9800' },
-    qualidade: { avatar: 'QA', title: 'Ag. Qualidade', color: '#00bcd4' },
-    vendas: { avatar: 'VD', title: 'Ag. Vendas', color: '#4caf50' },
-    planejamento: { avatar: 'PL', title: 'Ag. Planejamento', color: '#fdd835' }
-};
-
 function addAgentMessage(agent, text, isUser) {
     const container = document.getElementById('chat-' + agent);
     if (!container) return;
     const info = AGENT_LABELS[agent];
     const div = document.createElement('div');
     div.className = 'msg ' + (isUser ? 'user' : 'bot');
-    const msgId = 'msg-' + Date.now();
+    const safeText = text.replace(/`/g, "&#96;").replace(/\\/g, "&#92;");
     div.innerHTML = `
         <div class="msg-avatar" style="background:${isUser ? 'var(--cyan)' : info.color};${agent === 'planejamento' && !isUser ? 'color:#333;' : ''}" title="${isUser ? 'CEO' : info.title}">${isUser ? 'CEO' : info.avatar}</div>
         <div class="msg-bubble">
             ${isUser ? escHtml(text) : formatMD(text)}
-            ${!isUser ? `<button class="btn-speak" onclick="speakText(\`${text.replace(/`/g, "'").replace(/\\/g, "\\\\")}\`)" title="Ouvir resposta"><span class="material-icons-outlined" style="font-size:16px;">volume_up</span></button>` : ''}
+            ${!isUser ? `<div class="msg-actions">
+                <button class="btn-speak" onclick="speakText(this.closest('.msg-bubble').textContent)" title="Ouvir resposta">
+                    <span class="material-icons-outlined" style="font-size:16px;">volume_up</span> Ouvir
+                </button>
+                <button class="btn-speak" onclick="stopAudio()" title="Parar áudio">
+                    <span class="material-icons-outlined" style="font-size:16px;">stop</span> Parar
+                </button>
+            </div>` : ''}
         </div>
     `;
     container.appendChild(div);
@@ -337,19 +531,20 @@ async function sendAgentMsg(agent) {
     const text = input.value.trim();
     if (!text) return;
     input.value = '';
-    // Hide suggestions
-    const sug = input.closest('.chat-panel-full').querySelector('.chat-suggestions');
+    // Esconder sugestões
+    const sug = input.closest('.chat-panel-full')?.querySelector('.chat-suggestions');
     if (sug) sug.style.display = 'none';
     addAgentMessage(agent, text, true);
     addTyping(agent);
     const reply = await callOpenAI(agent, text);
     removeTyping(agent);
     addAgentMessage(agent, reply, false);
-    // Auto-speak if enabled
+    // Auto-falar se áudio habilitado
     if (audioEnabled) speakText(reply);
 }
 
 function askAgent(agent, text) {
-    document.getElementById('input-' + agent).value = text;
+    const input = document.getElementById('input-' + agent);
+    if (input) input.value = text;
     sendAgentMsg(agent);
 }

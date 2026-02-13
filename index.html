@@ -66,7 +66,8 @@
         </nav>
         <div class="sidebar-footer">
             <small>Fit Film - Packing & Storage Solutions</small>
-            <small style="color:var(--magenta);">Powered by OpenAI GPT-4o</small>
+                <small style="color:var(--magenta);">Powered by OpenAI GPT-4o</small>
+                <small style="color:#8a8fa8;margin-top:4px;">Áudio: Falar + Ouvir</small>
         </div>
     </aside>
 
@@ -229,28 +230,14 @@
 
             <!-- ===== CRM ===== -->
             <section id="section-crm" class="content-section">
-                <div class="crm-header">
-                    <h2><span class="material-icons-outlined" style="color:var(--magenta);vertical-align:middle;">people</span> CRM Proprietario - Gestao de Clientes e Fornecedores</h2>
-                    <p style="color:var(--text-muted);margin-top:8px;">Gestao integrada com dados da auditoria financeira 2024-2025</p>
+                <div style="margin-bottom:20px;">
+                    <h2 style="margin:0;color:#e8eaf0;font-size:20px;display:flex;align-items:center;gap:10px;">
+                        <span class="material-icons-outlined" style="color:var(--magenta);">people</span>
+                        CRM Proprietário - Carteira de Clientes e Fornecedores
+                    </h2>
+                    <p style="color:#8a8fa8;margin:6px 0 0;font-size:13px;">20 contatos reais extraídos dos dados da auditoria financeira 2024-2025 | Classificação ABC | Score de Saúde | Prioridade de Cobrança</p>
                 </div>
-                <div class="crm-stats" id="crm-stats"></div>
-                <div class="crm-filters">
-                    <input type="text" id="crm-search" placeholder="Buscar cliente/fornecedor..." oninput="filterCRM()">
-                    <select id="crm-type-filter" onchange="filterCRM()">
-                        <option value="all">Todos</option>
-                        <option value="Cliente">Clientes</option>
-                        <option value="Fornecedor">Fornecedores</option>
-                        <option value="Cliente/Parceiro">Parceiros</option>
-                    </select>
-                    <select id="crm-risk-filter" onchange="filterCRM()">
-                        <option value="all">Todos Riscos</option>
-                        <option value="critico">Critico</option>
-                        <option value="alto">Alto</option>
-                        <option value="medio">Medio</option>
-                        <option value="baixo">Baixo</option>
-                    </select>
-                </div>
-                <div class="crm-grid" id="crm-grid"></div>
+                <div id="crm-content"></div>
             </section>
 
             <!-- ===== AGENTE MASTER (Cientista de Dados) ===== -->
@@ -293,7 +280,10 @@
                             <button onclick="askAgent('master', this.textContent)">Onde estamos perdendo mais dinheiro?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-master" placeholder="Pergunte ao Cientista de Dados..." onkeypress="if(event.key==='Enter')sendAgentMsg('master')">
+                            <button id="mic-master" class="btn-mic" onclick="startRecording('master')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-master" placeholder="Pergunte ao Cientista de Dados... ou clique no microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('master')">
                             <button onclick="sendAgentMsg('master')" id="btn-master"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
@@ -321,7 +311,10 @@
                             <button onclick="askAgent('inadimplencia', this.textContent)">Quanto podemos recuperar dos R$ 11,6M vencidos?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-inadimplencia" placeholder="Pergunte sobre inadimplencia..." onkeypress="if(event.key==='Enter')sendAgentMsg('inadimplencia')">
+                            <button id="mic-inadimplencia" class="btn-mic" onclick="startRecording('inadimplencia')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-inadimplencia" placeholder="Pergunte sobre inadimplência... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('inadimplencia')">
                             <button onclick="sendAgentMsg('inadimplencia')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
@@ -349,7 +342,10 @@
                             <button onclick="askAgent('custos', this.textContent)">Quais fornecedores renegociar primeiro?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-custos" placeholder="Pergunte sobre custos..." onkeypress="if(event.key==='Enter')sendAgentMsg('custos')">
+                            <button id="mic-custos" class="btn-mic" onclick="startRecording('custos')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-custos" placeholder="Pergunte sobre custos... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('custos')">
                             <button onclick="sendAgentMsg('custos')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
@@ -377,7 +373,10 @@
                             <button onclick="askAgent('qualidade', this.textContent)">Qual o custo de nao ter qualidade?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-qualidade" placeholder="Pergunte sobre qualidade..." onkeypress="if(event.key==='Enter')sendAgentMsg('qualidade')">
+                            <button id="mic-qualidade" class="btn-mic" onclick="startRecording('qualidade')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-qualidade" placeholder="Pergunte sobre qualidade... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('qualidade')">
                             <button onclick="sendAgentMsg('qualidade')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
@@ -405,7 +404,10 @@
                             <button onclick="askAgent('vendas', this.textContent)">Qual estrategia para aumentar vendas em 30%?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-vendas" placeholder="Pergunte sobre vendas..." onkeypress="if(event.key==='Enter')sendAgentMsg('vendas')">
+                            <button id="mic-vendas" class="btn-mic" onclick="startRecording('vendas')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-vendas" placeholder="Pergunte sobre vendas... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('vendas')">
                             <button onclick="sendAgentMsg('vendas')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
@@ -433,7 +435,10 @@
                             <button onclick="askAgent('planejamento', this.textContent)">Quais metas financeiras para 2026?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <input type="text" id="input-planejamento" placeholder="Pergunte sobre planejamento..." onkeypress="if(event.key==='Enter')sendAgentMsg('planejamento')">
+                            <button id="mic-planejamento" class="btn-mic" onclick="startRecording('planejamento')" title="Falar com o agente">
+                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
+                            </button>
+                            <input type="text" id="input-planejamento" placeholder="Pergunte sobre planejamento... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('planejamento')">
                             <button onclick="sendAgentMsg('planejamento')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
