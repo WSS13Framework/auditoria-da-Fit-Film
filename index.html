@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fit Film | Auditoria Financeira 2024-2025</title>
+    <title>Fit Film | Plano de Transformação 2024-2025</title>
     <link rel="icon" href="img/logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -19,55 +19,56 @@
             <div class="logo">
                 <img src="img/logo.png" alt="Fit Film" class="logo-img">
                 <div class="logo-text">
-                    <strong>Auditoria Financeira</strong>
-                    <small>2024 - 2025</small>
+                    <strong>Plano de Transformação</strong>
+                    <small>Dados Reais 2024-2025</small>
                 </div>
             </div>
         </div>
         <nav class="sidebar-nav">
+            <span style="padding:8px 16px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">Diagnóstico</span>
             <a href="#" class="nav-item active" data-section="overview">
-                <span class="material-icons-outlined">dashboard</span> Visao Geral
+                <span class="material-icons-outlined">dashboard</span> Visão Geral
             </a>
             <a href="#" class="nav-item" data-section="receivables">
                 <span class="material-icons-outlined">account_balance_wallet</span> Recebimentos
             </a>
             <a href="#" class="nav-item" data-section="anomalies">
-                <span class="material-icons-outlined">warning_amber</span> Anomalias
+                <span class="material-icons-outlined">error_outline</span> Onde Erramos
             </a>
             <a href="#" class="nav-item" data-section="mindmap">
-                <span class="material-icons-outlined">hub</span> Mapa Mental
+                <span class="material-icons-outlined">hub</span> Mapa Estratégico
             </a>
             <a href="#" class="nav-item" data-section="audit">
-                <span class="material-icons-outlined">fact_check</span> Relatorio
+                <span class="material-icons-outlined">rocket_launch</span> Plano de Transformação
             </a>
             <a href="#" class="nav-item" data-section="crm">
                 <span class="material-icons-outlined">people</span> CRM Clientes
             </a>
             <div style="margin:12px 0;border-top:1px solid var(--border);"></div>
-            <span style="padding:8px 16px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">Agentes Especializados</span>
+            <span style="padding:8px 16px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">Consultores Estratégicos</span>
             <a href="#" class="nav-item" data-section="agent-master">
-                <span class="material-icons-outlined">psychology</span> Cientista de Dados
+                <span class="material-icons-outlined">psychology</span> Consultor Chefe
             </a>
             <a href="#" class="nav-item" data-section="agent-inadimplencia">
-                <span class="material-icons-outlined">money_off</span> Ag. Inadimplencia
+                <span class="material-icons-outlined">money_off</span> Inadimplência
             </a>
             <a href="#" class="nav-item" data-section="agent-custos">
-                <span class="material-icons-outlined">trending_up</span> Ag. Custos
+                <span class="material-icons-outlined">trending_up</span> Custos
             </a>
             <a href="#" class="nav-item" data-section="agent-qualidade">
-                <span class="material-icons-outlined">verified</span> Ag. Qualidade
+                <span class="material-icons-outlined">verified</span> Qualidade
             </a>
             <a href="#" class="nav-item" data-section="agent-vendas">
-                <span class="material-icons-outlined">storefront</span> Ag. Vendas
+                <span class="material-icons-outlined">storefront</span> Vendas
             </a>
             <a href="#" class="nav-item" data-section="agent-planejamento">
-                <span class="material-icons-outlined">calendar_month</span> Ag. Planejamento
+                <span class="material-icons-outlined">calendar_month</span> Planejamento
             </a>
         </nav>
         <div class="sidebar-footer">
             <small>Fit Film - Packing & Storage Solutions</small>
-                <small style="color:var(--magenta);">Powered by OpenAI GPT-4o</small>
-                <small style="color:#8a8fa8;margin-top:4px;">Áudio: Falar + Ouvir</small>
+            <small style="color:var(--magenta);">Powered by OpenAI GPT-4o</small>
+            <small style="color:#8a8fa8;margin-top:4px;">OS DADOS DIZEM TUDO</small>
         </div>
     </aside>
 
@@ -76,8 +77,8 @@
         <header class="topbar">
             <button class="menu-toggle" id="menu-toggle"><span class="material-icons-outlined">menu</span></button>
             <div class="topbar-title">
-                <h1 id="page-title">Visao Geral</h1>
-                <span class="topbar-badge">AUDITORIA 2024-2025</span>
+                <h1 id="page-title">Visão Geral Financeira</h1>
+                <span class="topbar-badge">DADOS REAIS 2024-2025</span>
             </div>
             <div class="topbar-actions">
                 <div class="status-indicator"></div>
@@ -86,8 +87,16 @@
         </header>
 
         <main>
-            <!-- ===== VISAO GERAL ===== -->
+            <!-- ===== VISÃO GERAL ===== -->
             <section id="section-overview" class="content-section active">
+                <!-- Banner de diagnóstico -->
+                <div style="background:linear-gradient(135deg, #e91e8c15, #00bcd415);border:1px solid #e91e8c30;border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <span class="material-icons-outlined" style="color:#e91e8c;font-size:28px;">info</span>
+                    <div>
+                        <strong style="color:#e8eaf0;">REGRA IMUTÁVEL: OS DADOS DIZEM TUDO</strong>
+                        <p style="margin:4px 0 0;font-size:13px;color:#8a8fa8;">Cada número abaixo vem dos dados reais da Fit Film. O erro está nos dados. A solução também.</p>
+                    </div>
+                </div>
                 <div class="kpi-row">
                     <div class="kpi-card">
                         <div class="kpi-header"><span class="kpi-label">Total Recebido</span><span class="material-icons-outlined kpi-icon green">payments</span></div>
@@ -95,25 +104,25 @@
                         <div class="kpi-sub">62,2% do faturado | Meta: 85%</div>
                     </div>
                     <div class="kpi-card">
-                        <div class="kpi-header"><span class="kpi-label">Total A Vencer</span><span class="material-icons-outlined kpi-icon blue">schedule</span></div>
-                        <div class="kpi-value">R$ 21,5M</div>
-                        <div class="kpi-sub">37,8% do faturado</div>
+                        <div class="kpi-header"><span class="kpi-label">Não Recebido</span><span class="material-icons-outlined kpi-icon red">money_off</span></div>
+                        <div class="kpi-value red">R$ 21,5M</div>
+                        <div class="kpi-sub">37,8% EVAPOROU - O ERRO CENTRAL</div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header"><span class="kpi-label">Total Vencido</span><span class="material-icons-outlined kpi-icon red">error</span></div>
                         <div class="kpi-value red">R$ 11,6M</div>
-                        <div class="kpi-sub">20,4% do faturado | CRITICO</div>
+                        <div class="kpi-sub">Irrecuperável se não agir AGORA</div>
                     </div>
                     <div class="kpi-card alert-card">
-                        <div class="kpi-header"><span class="kpi-label">Inadimplencia</span><span class="material-icons-outlined kpi-icon red">trending_up</span></div>
+                        <div class="kpi-header"><span class="kpi-label">Inadimplência</span><span class="material-icons-outlined kpi-icon red">trending_up</span></div>
                         <div class="kpi-value red">22,33%</div>
-                        <div class="kpi-sub">Benchmark: 3-5% | 4,5x acima</div>
+                        <div class="kpi-sub">Setor: 3-5% | 4,5x ACIMA</div>
                     </div>
                 </div>
                 <div class="charts-row">
                     <div class="chart-panel">
                         <div class="panel-header">
-                            <h3>Evolucao Mensal - Recebimentos vs Inadimplencia</h3>
+                            <h3>Evolução Mensal - Recebimentos vs Inadimplência</h3>
                             <div class="panel-actions">
                                 <select id="chart-year-filter" onchange="updateCharts()">
                                     <option value="all">2024-2025</option>
@@ -125,7 +134,7 @@
                         <div class="chart-container"><canvas id="chart-evolution"></canvas></div>
                     </div>
                     <div class="chart-panel">
-                        <div class="panel-header"><h3>Composicao Financeira</h3></div>
+                        <div class="panel-header"><h3>Composição Financeira</h3></div>
                         <div class="chart-container"><canvas id="chart-composition"></canvas></div>
                     </div>
                 </div>
@@ -135,26 +144,25 @@
                         <div class="chart-container"><canvas id="chart-ontime"></canvas></div>
                     </div>
                     <div class="chart-panel">
-                        <div class="panel-header"><h3>Taxa de Inadimplencia</h3></div>
+                        <div class="panel-header"><h3>Taxa de Inadimplência - O Problema Crônico</h3></div>
                         <div class="chart-container"><canvas id="chart-default-rate"></canvas></div>
                     </div>
                 </div>
-                <!-- Graficos Avancados -->
                 <div class="charts-row">
                     <div class="chart-panel">
-                        <div class="panel-header"><h3>Radar - Saude Financeira por Indicador</h3></div>
+                        <div class="panel-header"><h3>Radar - Saúde Financeira por Indicador</h3></div>
                         <div class="chart-container"><canvas id="chart-radar"></canvas></div>
                     </div>
                     <div class="chart-panel">
-                        <div class="panel-header"><h3>Waterfall - Impacto das Anomalias no Faturamento</h3></div>
+                        <div class="panel-header"><h3>Waterfall - Impacto das Crises no Faturamento</h3></div>
                         <div class="chart-container"><canvas id="chart-waterfall"></canvas></div>
                     </div>
                 </div>
                 <div class="table-panel">
-                    <div class="panel-header"><h3>Transacoes Reais Identificadas</h3></div>
+                    <div class="panel-header"><h3>Transações Reais Identificadas nos Dados</h3></div>
                     <div class="table-container">
                         <table>
-                            <thead><tr><th>Data</th><th>Descricao</th><th>Tipo</th><th>Valor</th><th>Status</th></tr></thead>
+                            <thead><tr><th>Data</th><th>Descrição</th><th>Tipo</th><th>Valor</th><th>Status</th></tr></thead>
                             <tbody id="transactions-body"></tbody>
                         </table>
                     </div>
@@ -172,17 +180,17 @@
                     <div class="kpi-card">
                         <div class="kpi-header"><span class="kpi-label">Atrasado</span><span class="material-icons-outlined kpi-icon orange">schedule</span></div>
                         <div class="kpi-value orange">R$ 5,7M</div>
-                        <div class="kpi-sub">10% do faturado</div>
+                        <div class="kpi-sub">EM RISCO AGORA</div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-header"><span class="kpi-label">Taxa Atraso</span><span class="material-icons-outlined kpi-icon orange">trending_up</span></div>
                         <div class="kpi-value orange">16,58%</div>
-                        <div class="kpi-sub">Benchmark: 5-8%</div>
+                        <div class="kpi-sub">Setor: 5-8% | 2x ACIMA</div>
                     </div>
                     <div class="kpi-card">
-                        <div class="kpi-header"><span class="kpi-label">Eficiencia</span><span class="material-icons-outlined kpi-icon blue">speed</span></div>
+                        <div class="kpi-header"><span class="kpi-label">Eficiência</span><span class="material-icons-outlined kpi-icon blue">speed</span></div>
                         <div class="kpi-value">61,75%</div>
-                        <div class="kpi-sub">Meta: 85-92%</div>
+                        <div class="kpi-sub">Meta: 85-92% | GAP: 23pp</div>
                     </div>
                 </div>
                 <div class="charts-row">
@@ -191,22 +199,26 @@
                         <div class="chart-container"><canvas id="chart-receivables"></canvas></div>
                     </div>
                     <div class="chart-panel">
-                        <div class="panel-header"><h3>Meios de Pagamento</h3></div>
+                        <div class="panel-header"><h3>Meios de Pagamento (Métodos Antigos vs Modernos)</h3></div>
                         <div class="chart-container"><canvas id="chart-clients"></canvas></div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== ANOMALIAS ===== -->
+            <!-- ===== ONDE ERRAMOS ===== -->
             <section id="section-anomalies" class="content-section">
+                <div style="background:linear-gradient(135deg, #f4433615, #ff980015);border:1px solid #f4433630;border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+                    <h3 style="margin:0 0 8px;color:#f44336;display:flex;align-items:center;gap:8px;"><span class="material-icons-outlined">error_outline</span> ONDE ERRAMOS - Os Dados Mostram</h3>
+                    <p style="margin:0;font-size:13px;color:#8a8fa8;">3 crises em 18 meses. Cada uma revela um método antigo que precisa ser eliminado. Os dados não mentem.</p>
+                </div>
                 <div class="anomalies-grid" id="anomalies-grid"></div>
             </section>
 
-            <!-- ===== MAPA MENTAL ===== -->
+            <!-- ===== MAPA ESTRATÉGICO ===== -->
             <section id="section-mindmap" class="content-section">
                 <div class="mindmap-container">
                     <div class="panel-header" style="margin-bottom:18px;">
-                        <h3><span class="material-icons-outlined" style="color:var(--magenta);vertical-align:middle;">hub</span> Mapa Mental - Conexoes Financeiras da Auditoria</h3>
+                        <h3><span class="material-icons-outlined" style="color:var(--magenta);vertical-align:middle;">hub</span> Mapa Estratégico - Conexões Financeiras</h3>
                         <div class="panel-actions">
                             <button onclick="resetMindmap()" class="btn-action"><span class="material-icons-outlined">refresh</span> Reset</button>
                         </div>
@@ -214,16 +226,16 @@
                     <div id="mindmap-svg" class="mindmap-svg-wrapper"></div>
                     <div class="mindmap-legend">
                         <span><span class="legend-dot" style="background:var(--magenta);"></span> Empresa</span>
-                        <span><span class="legend-dot" style="background:var(--red);"></span> Anomalia Critica</span>
-                        <span><span class="legend-dot" style="background:var(--orange);"></span> Anomalia Alta</span>
+                        <span><span class="legend-dot" style="background:var(--red);"></span> Erro Crítico</span>
+                        <span><span class="legend-dot" style="background:var(--orange);"></span> Alerta</span>
                         <span><span class="legend-dot" style="background:var(--cyan);"></span> Indicador</span>
-                        <span><span class="legend-dot" style="background:var(--green);"></span> Recomendacao</span>
-                        <span><span class="legend-dot" style="background:var(--yellow);"></span> Cliente/Fornecedor</span>
+                        <span><span class="legend-dot" style="background:var(--green);"></span> Solução</span>
+                        <span><span class="legend-dot" style="background:var(--yellow);"></span> Cliente</span>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== RELATORIO ===== -->
+            <!-- ===== PLANO DE TRANSFORMAÇÃO ===== -->
             <section id="section-audit" class="content-section">
                 <div class="audit-report" id="audit-report"></div>
             </section>
@@ -235,210 +247,201 @@
                         <span class="material-icons-outlined" style="color:var(--magenta);">people</span>
                         CRM Proprietário - Carteira de Clientes e Fornecedores
                     </h2>
-                    <p style="color:#8a8fa8;margin:6px 0 0;font-size:13px;">20 contatos reais extraídos dos dados da auditoria financeira 2024-2025 | Classificação ABC | Score de Saúde | Prioridade de Cobrança</p>
+                    <p style="color:#8a8fa8;margin:6px 0 0;font-size:13px;">20 contatos reais extraídos dos dados | Classificação ABC | Score de Saúde | Prioridade de Cobrança</p>
                 </div>
                 <div id="crm-content"></div>
             </section>
 
-            <!-- ===== AGENTE MASTER (Cientista de Dados) ===== -->
+            <!-- ===== CONSULTOR ESTRATÉGICO CHEFE ===== -->
             <section id="section-agent-master" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full">
                         <div class="chat-header-bar">
                             <span class="material-icons-outlined">psychology</span>
                             <div>
-                                <strong>Cientista de Dados Senior</strong>
-                                <small>Analise executiva completa | GPT-4o</small>
+                                <strong>Consultor Estratégico Chefe</strong>
+                                <small>Diagnóstico baseado em dados reais | GPT-4o</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Ativar/Desativar audio">
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Ativar/Desativar áudio">
                                 <span class="material-icons-outlined" id="global-audio-icon">volume_up</span>
                             </button>
                         </div>
                         <div class="chat-messages" id="chat-master">
                             <div class="msg bot">
-                                <div class="msg-avatar" title="Cientista de Dados">CD</div>
+                                <div class="msg-avatar" style="background:linear-gradient(135deg, #e91e8c, #00bcd4);" title="Consultor Estratégico">CE</div>
                                 <div class="msg-bubble">
-                                    Ola! Sou o <strong>Cientista de Dados Senior</strong> da auditoria financeira da Fit Film.<br><br>
-                                    Tenho acesso completo aos dados de <strong>Jan/2024 a Dez/2025</strong> e posso analisar qualquer aspecto financeiro da empresa.<br><br>
-                                    <strong>Posso ajudar com:</strong>
+                                    <strong>Consultor Estratégico Chefe</strong> - Auditoria Fit Film<br><br>
+                                    Tenho acesso a <strong>todos os dados financeiros reais</strong> de Jan/2024 a Dez/2025.<br><br>
+                                    <strong style="color:#e91e8c;">REGRA: OS DADOS DIZEM TUDO.</strong><br>
+                                    Cada resposta minha vem com o número que comprova.<br><br>
+                                    <strong>Posso diagnosticar:</strong>
                                     <ul>
-                                        <li>Diagnostico geral da saude financeira</li>
-                                        <li>Analise de anomalias e causas raiz</li>
-                                        <li>Planos de acao com ROI estimado</li>
-                                        <li>Cenarios futuros e projecoes</li>
-                                        <li>Benchmarks do setor de embalagens</li>
+                                        <li>DE ONDE VIEMOS - O que deu errado e por quê</li>
+                                        <li>ONDE ESTAMOS - Situação real baseada nos dados</li>
+                                        <li>PARA ONDE VAMOS - Caminho pragmático de transformação</li>
                                     </ul>
+                                    <em style="font-size:12px;color:#8a8fa8;">Fale ou digite sua pergunta. Sou direto e pragmático.</em>
                                 </div>
                             </div>
                         </div>
                         <div class="chat-suggestions" id="suggestions-master">
-                            <button onclick="askAgent('master', this.textContent)">Me de um diagnostico geral da saude financeira</button>
-                            <button onclick="askAgent('master', this.textContent)">O que deu errado no planejamento?</button>
-                            <button onclick="askAgent('master', this.textContent)">Qual o plano de acao para recuperar?</button>
-                            <button onclick="askAgent('master', this.textContent)">Quais cenarios temos para os proximos 12 meses?</button>
-                            <button onclick="askAgent('master', this.textContent)">Qual o risco real de insolvencia?</button>
-                            <button onclick="askAgent('master', this.textContent)">Onde estamos perdendo mais dinheiro?</button>
+                            <button onclick="askAgent('master', this.textContent)">Onde está o erro central da Fit Film?</button>
+                            <button onclick="askAgent('master', this.textContent)">Por que o planejamento falhou?</button>
+                            <button onclick="askAgent('master', this.textContent)">Qual o caminho para elevar a empresa?</button>
+                            <button onclick="askAgent('master', this.textContent)">Qual o risco se não agirmos agora?</button>
+                            <button onclick="askAgent('master', this.textContent)">Me dê o diagnóstico completo em 3 minutos</button>
+                            <button onclick="askAgent('master', this.textContent)">De onde viemos, onde estamos, para onde vamos?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-master" class="btn-mic" onclick="startRecording('master')" title="Falar com o agente">
+                            <button id="mic-master" class="btn-mic" onclick="startRecording('master')" title="Falar com o consultor">
                                 <span class="material-icons-outlined" style="font-size:20px;">mic</span>
                             </button>
-                            <input type="text" id="input-master" placeholder="Pergunte ao Cientista de Dados... ou clique no microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('master')">
+                            <input type="text" id="input-master" placeholder="Pergunte ao Consultor Estratégico... ou clique no microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('master')">
                             <button onclick="sendAgentMsg('master')" id="btn-master"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== AGENTE INADIMPLENCIA ===== -->
+            <!-- ===== CONSULTOR INADIMPLÊNCIA ===== -->
             <section id="section-agent-inadimplencia" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full" style="border-left:3px solid var(--red);">
                         <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--red-bg), rgba(244,67,54,0.05));">
                             <span class="material-icons-outlined" style="color:var(--red);">money_off</span>
                             <div>
-                                <strong>Agente de Inadimplencia</strong>
-                                <small>Especialista em cobranca e recuperacao de credito</small>
+                                <strong>Consultor de Inadimplência</strong>
+                                <small>Recuperação de crédito e política de cobrança</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Áudio"><span class="material-icons-outlined">volume_up</span></button>
                         </div>
                         <div class="chat-messages" id="chat-inadimplencia">
-                            <div class="msg bot"><div class="msg-avatar" style="background:var(--red);">IN</div><div class="msg-bubble">Sou o <strong>Agente de Inadimplencia</strong>. Taxa atual: <strong style="color:var(--red);">22,33%</strong> (4,5x acima do aceitavel). R$ 11,6M vencidos. Pergunte sobre estrategias de cobranca, perfil de inadimplentes, ou planos de recuperacao.</div></div>
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--red);">IN</div><div class="msg-bubble"><strong>Consultor de Inadimplência</strong><br><br>Os dados mostram: <strong style="color:var(--red);">22,33% de inadimplência</strong> (setor aceita 3-5%).<br>R$ 11,6M vencidos. R$ 5,7M atrasados.<br><br>Sei exatamente <strong>quem deve, quanto deve, e o plano para recuperar</strong>.<br><em style="font-size:12px;">Pergunte. Os dados respondem.</em></div></div>
                         </div>
                         <div class="chat-suggestions">
-                            <button onclick="askAgent('inadimplencia', this.textContent)">Qual o perfil dos maiores inadimplentes?</button>
-                            <button onclick="askAgent('inadimplencia', this.textContent)">Como reduzir a inadimplencia de 22% para 5%?</button>
-                            <button onclick="askAgent('inadimplencia', this.textContent)">Quanto podemos recuperar dos R$ 11,6M vencidos?</button>
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Quem são os maiores devedores e quanto devem?</button>
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Como reduzir de 22% para 5% de inadimplência?</button>
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Quanto dos R$ 11,6M vencidos é recuperável?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-inadimplencia" class="btn-mic" onclick="startRecording('inadimplencia')" title="Falar com o agente">
-                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
-                            </button>
-                            <input type="text" id="input-inadimplencia" placeholder="Pergunte sobre inadimplência... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('inadimplencia')">
+                            <button id="mic-inadimplencia" class="btn-mic" onclick="startRecording('inadimplencia')" title="Falar"><span class="material-icons-outlined" style="font-size:20px;">mic</span></button>
+                            <input type="text" id="input-inadimplencia" placeholder="Pergunte sobre inadimplência..." onkeypress="if(event.key==='Enter')sendAgentMsg('inadimplencia')">
                             <button onclick="sendAgentMsg('inadimplencia')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== AGENTE CUSTOS ===== -->
+            <!-- ===== CONSULTOR CUSTOS ===== -->
             <section id="section-agent-custos" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full" style="border-left:3px solid var(--orange);">
                         <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--orange-bg), rgba(255,152,0,0.05));">
                             <span class="material-icons-outlined" style="color:var(--orange);">trending_up</span>
                             <div>
-                                <strong>Agente de Custos</strong>
-                                <small>Especialista em reducao de custos e eficiencia operacional</small>
+                                <strong>Consultor de Custos</strong>
+                                <small>Redução de custos e recuperação de margem</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Áudio"><span class="material-icons-outlined">volume_up</span></button>
                         </div>
                         <div class="chat-messages" id="chat-custos">
-                            <div class="msg bot"><div class="msg-avatar" style="background:var(--orange);">CU</div><div class="msg-bubble">Sou o <strong>Agente de Custos</strong>. Detectei aumento de <strong style="color:var(--orange);">35%</strong> nos custos em Set/2024. Debito emergencial de R$ 138.000 com FRONERI. Margem caiu de 25% para 15%. Pergunte sobre otimizacao de custos.</div></div>
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--orange);">CU</div><div class="msg-bubble"><strong>Consultor de Custos</strong><br><br>Os dados mostram: custos subiram <strong style="color:var(--orange);">35% em Set/2024</strong>. Margem caiu de 25% para 15%.<br>Débito emergencial R$ 138.000 com FRONERI.<br><br>Sei onde cortar e <strong>quanto a empresa economiza com cada ação</strong>.<br><em style="font-size:12px;">Pergunte. Os dados respondem.</em></div></div>
                         </div>
                         <div class="chat-suggestions">
-                            <button onclick="askAgent('custos', this.textContent)">O que causou o aumento de 35% nos custos?</button>
+                            <button onclick="askAgent('custos', this.textContent)">O que causou a explosão de custos em Set/2024?</button>
                             <button onclick="askAgent('custos', this.textContent)">Como recuperar a margem de 25%?</button>
-                            <button onclick="askAgent('custos', this.textContent)">Quais fornecedores renegociar primeiro?</button>
+                            <button onclick="askAgent('custos', this.textContent)">Quanto economizamos migrando de boleto para PIX?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-custos" class="btn-mic" onclick="startRecording('custos')" title="Falar com o agente">
-                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
-                            </button>
-                            <input type="text" id="input-custos" placeholder="Pergunte sobre custos... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('custos')">
+                            <button id="mic-custos" class="btn-mic" onclick="startRecording('custos')" title="Falar"><span class="material-icons-outlined" style="font-size:20px;">mic</span></button>
+                            <input type="text" id="input-custos" placeholder="Pergunte sobre custos..." onkeypress="if(event.key==='Enter')sendAgentMsg('custos')">
                             <button onclick="sendAgentMsg('custos')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== AGENTE QUALIDADE ===== -->
+            <!-- ===== CONSULTOR QUALIDADE ===== -->
             <section id="section-agent-qualidade" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full" style="border-left:3px solid var(--cyan);">
                         <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--cyan-bg), rgba(0,188,212,0.05));">
                             <span class="material-icons-outlined" style="color:var(--cyan);">verified</span>
                             <div>
-                                <strong>Agente de Qualidade</strong>
-                                <small>Especialista em controle de qualidade e processos</small>
+                                <strong>Consultor de Qualidade</strong>
+                                <small>Controle de qualidade e processos ISO</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Áudio"><span class="material-icons-outlined">volume_up</span></button>
                         </div>
                         <div class="chat-messages" id="chat-qualidade">
-                            <div class="msg bot"><div class="msg-avatar" style="background:var(--cyan);">QA</div><div class="msg-bubble">Sou o <strong>Agente de Qualidade</strong>. Detectei crise em <strong style="color:var(--cyan);">Marco/2025</strong>: queda de 15% na receita por problemas de qualidade. Registros de "lote e quantidade divergente". Pergunte sobre controle de qualidade e processos.</div></div>
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--cyan);">QA</div><div class="msg-bubble"><strong>Consultor de Qualidade</strong><br><br>Os dados mostram: crise em <strong style="color:var(--cyan);">Mar/2025</strong> por "lote e quantidade divergente".<br>Receita caiu 15%. Inadimplência subiu para 26,4%.<br><br>Empresa de 25 anos <strong>sem ISO, sem rastreabilidade, sem auditoria formal</strong>.<br><em style="font-size:12px;">Pergunte. Os dados respondem.</em></div></div>
                         </div>
                         <div class="chat-suggestions">
-                            <button onclick="askAgent('qualidade', this.textContent)">O que causou o problema de qualidade em Marco/2025?</button>
-                            <button onclick="askAgent('qualidade', this.textContent)">Como implementar controle de qualidade eficaz?</button>
-                            <button onclick="askAgent('qualidade', this.textContent)">Qual o custo de nao ter qualidade?</button>
+                            <button onclick="askAgent('qualidade', this.textContent)">Quanto a falta de qualidade custou em dinheiro?</button>
+                            <button onclick="askAgent('qualidade', this.textContent)">Como implementar ISO 9001 em 180 dias?</button>
+                            <button onclick="askAgent('qualidade', this.textContent)">O que causou os lotes divergentes?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-qualidade" class="btn-mic" onclick="startRecording('qualidade')" title="Falar com o agente">
-                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
-                            </button>
-                            <input type="text" id="input-qualidade" placeholder="Pergunte sobre qualidade... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('qualidade')">
+                            <button id="mic-qualidade" class="btn-mic" onclick="startRecording('qualidade')" title="Falar"><span class="material-icons-outlined" style="font-size:20px;">mic</span></button>
+                            <input type="text" id="input-qualidade" placeholder="Pergunte sobre qualidade..." onkeypress="if(event.key==='Enter')sendAgentMsg('qualidade')">
                             <button onclick="sendAgentMsg('qualidade')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== AGENTE VENDAS ===== -->
+            <!-- ===== CONSULTOR VENDAS ===== -->
             <section id="section-agent-vendas" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full" style="border-left:3px solid var(--green);">
                         <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--green-bg), rgba(76,175,80,0.05));">
                             <span class="material-icons-outlined" style="color:var(--green);">storefront</span>
                             <div>
-                                <strong>Agente de Vendas</strong>
-                                <small>Especialista em estrategia comercial e receita</small>
+                                <strong>Consultor de Vendas</strong>
+                                <small>Estratégia comercial e diversificação</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Áudio"><span class="material-icons-outlined">volume_up</span></button>
                         </div>
                         <div class="chat-messages" id="chat-vendas">
-                            <div class="msg bot"><div class="msg-avatar" style="background:var(--green);">VD</div><div class="msg-bubble">Sou o <strong>Agente de Vendas</strong>. Faturamento total: <strong style="color:var(--green);">R$ 57M</strong> em 24 meses. Queda critica de <strong style="color:var(--red);">60%</strong> em Jun/2024. Pergunte sobre estrategias de vendas, diversificacao e retencao de clientes.</div></div>
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--green);">VD</div><div class="msg-bubble"><strong>Consultor de Vendas</strong><br><br>Os dados mostram: faturamento R$ 57M mas vendas caíram <strong style="color:var(--red);">57% em Jun/2024</strong> quando 1 cliente saiu.<br><br>Carteira concentrada = <strong>risco fatal</strong>. Sei como diversificar e criar pipeline previsível.<br><em style="font-size:12px;">Pergunte. Os dados respondem.</em></div></div>
                         </div>
                         <div class="chat-suggestions">
-                            <button onclick="askAgent('vendas', this.textContent)">Por que as vendas cairam 60% em Junho/2024?</button>
-                            <button onclick="askAgent('vendas', this.textContent)">Como diversificar a base de clientes?</button>
-                            <button onclick="askAgent('vendas', this.textContent)">Qual estrategia para aumentar vendas em 30%?</button>
+                            <button onclick="askAgent('vendas', this.textContent)">Por que perdemos 57% das vendas em um mês?</button>
+                            <button onclick="askAgent('vendas', this.textContent)">Como diversificar para nunca mais depender de 1 cliente?</button>
+                            <button onclick="askAgent('vendas', this.textContent)">Qual estratégia para crescer 30% com segurança?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-vendas" class="btn-mic" onclick="startRecording('vendas')" title="Falar com o agente">
-                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
-                            </button>
-                            <input type="text" id="input-vendas" placeholder="Pergunte sobre vendas... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('vendas')">
+                            <button id="mic-vendas" class="btn-mic" onclick="startRecording('vendas')" title="Falar"><span class="material-icons-outlined" style="font-size:20px;">mic</span></button>
+                            <input type="text" id="input-vendas" placeholder="Pergunte sobre vendas..." onkeypress="if(event.key==='Enter')sendAgentMsg('vendas')">
                             <button onclick="sendAgentMsg('vendas')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ===== AGENTE PLANEJAMENTO ===== -->
+            <!-- ===== CONSULTOR PLANEJAMENTO ===== -->
             <section id="section-agent-planejamento" class="content-section">
                 <div class="chat-wrapper">
                     <div class="chat-panel-full" style="border-left:3px solid var(--yellow);">
                         <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--yellow-bg), rgba(253,216,53,0.05));">
                             <span class="material-icons-outlined" style="color:var(--yellow);">calendar_month</span>
                             <div>
-                                <strong>Agente de Planejamento</strong>
-                                <small>Especialista em planejamento estrategico e financeiro</small>
+                                <strong>Consultor de Planejamento</strong>
+                                <small>Planejamento estratégico baseado em recebimento real</small>
                             </div>
-                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Áudio"><span class="material-icons-outlined">volume_up</span></button>
                         </div>
                         <div class="chat-messages" id="chat-planejamento">
-                            <div class="msg bot"><div class="msg-avatar" style="background:var(--yellow);color:#333;">PL</div><div class="msg-bubble">Sou o <strong>Agente de Planejamento</strong>. O planejamento 2024-2025 falhou: inadimplencia 4,5x acima, 40% do faturamento nao virou caixa, 3 crises em 18 meses. Pergunte sobre o novo planejamento estrategico.</div></div>
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--yellow);color:#333;">PL</div><div class="msg-bubble"><strong>Consultor de Planejamento</strong><br><br>Os dados mostram o <strong style="color:var(--yellow);">ERRO FATAL</strong>: o planejamento foi feito sobre FATURAMENTO (R$ 57M), não sobre RECEBIMENTO (R$ 35,5M).<br><br>É como planejar viagem de 1.000km com combustível para 620km.<br><br>Sei como criar o <strong>novo planejamento baseado em dados reais</strong>.<br><em style="font-size:12px;">Pergunte. Os dados respondem.</em></div></div>
                         </div>
                         <div class="chat-suggestions">
-                            <button onclick="askAgent('planejamento', this.textContent)">O que deu errado no planejamento anterior?</button>
-                            <button onclick="askAgent('planejamento', this.textContent)">Como criar um planejamento financeiro solido?</button>
-                            <button onclick="askAgent('planejamento', this.textContent)">Quais metas financeiras para 2026?</button>
+                            <button onclick="askAgent('planejamento', this.textContent)">Onde exatamente o planejamento errou?</button>
+                            <button onclick="askAgent('planejamento', this.textContent)">Como planejar baseado em recebimento real?</button>
+                            <button onclick="askAgent('planejamento', this.textContent)">Quais metas realistas para 2026?</button>
                         </div>
                         <div class="chat-input-bar">
-                            <button id="mic-planejamento" class="btn-mic" onclick="startRecording('planejamento')" title="Falar com o agente">
-                                <span class="material-icons-outlined" style="font-size:20px;">mic</span>
-                            </button>
-                            <input type="text" id="input-planejamento" placeholder="Pergunte sobre planejamento... ou use o microfone" onkeypress="if(event.key==='Enter')sendAgentMsg('planejamento')">
+                            <button id="mic-planejamento" class="btn-mic" onclick="startRecording('planejamento')" title="Falar"><span class="material-icons-outlined" style="font-size:20px;">mic</span></button>
+                            <input type="text" id="input-planejamento" placeholder="Pergunte sobre planejamento..." onkeypress="if(event.key==='Enter')sendAgentMsg('planejamento')">
                             <button onclick="sendAgentMsg('planejamento')"><span class="material-icons-outlined">send</span></button>
                         </div>
                     </div>

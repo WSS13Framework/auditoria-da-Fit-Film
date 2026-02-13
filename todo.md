@@ -32,3 +32,13 @@
 - [ ] Áudio: Implementar speech-to-text (ouvir perguntas por voz)
 - [ ] Áudio: Implementar text-to-speech funcional (falar respostas)
 - [ ] Áudio: Botão de microfone para gravar perguntas
+
+## Upgrade v4 - Consultoria Estratégica Real
+- [ ] Diagnóstico profundo: ONDE erraram (com evidências dos dados)
+- [ ] Análise de causas raiz: POR QUE erraram (métodos antigos, 25 anos)
+- [ ] Situação atual: ONDE estão agora (mapa da realidade)
+- [ ] Plano de reestruturação: COMO chegar ao próximo nível
+- [ ] Agentes como consultores estratégicos (não apenas respondedores)
+- [ ] Relatório de auditoria = Plano de transformação empresarial
+- [ ] Roadmap de modernização operacional e financeira
+- [ ] Análise de gap: empresa atual vs empresa ideal
