@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Film | Auditoria Financeira 2024-2025</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="img/logo.png" alt="Fit Film" class="logo-img">
+                <div class="logo-text">
+                    <strong>Auditoria Financeira</strong>
+                    <small>2024 - 2025</small>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="overview">
+                <span class="material-icons-outlined">dashboard</span> Visao Geral
+            </a>
+            <a href="#" class="nav-item" data-section="receivables">
+                <span class="material-icons-outlined">account_balance_wallet</span> Recebimentos
+            </a>
+            <a href="#" class="nav-item" data-section="anomalies">
+                <span class="material-icons-outlined">warning_amber</span> Anomalias
+            </a>
+            <a href="#" class="nav-item" data-section="mindmap">
+                <span class="material-icons-outlined">hub</span> Mapa Mental
+            </a>
+            <a href="#" class="nav-item" data-section="audit">
+                <span class="material-icons-outlined">fact_check</span> Relatorio
+            </a>
+            <a href="#" class="nav-item" data-section="crm">
+                <span class="material-icons-outlined">people</span> CRM Clientes
+            </a>
+            <div style="margin:12px 0;border-top:1px solid var(--border);"></div>
+            <span style="padding:8px 16px;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">Agentes Especializados</span>
+            <a href="#" class="nav-item" data-section="agent-master">
+                <span class="material-icons-outlined">psychology</span> Cientista de Dados
+            </a>
+            <a href="#" class="nav-item" data-section="agent-inadimplencia">
+                <span class="material-icons-outlined">money_off</span> Ag. Inadimplencia
+            </a>
+            <a href="#" class="nav-item" data-section="agent-custos">
+                <span class="material-icons-outlined">trending_up</span> Ag. Custos
+            </a>
+            <a href="#" class="nav-item" data-section="agent-qualidade">
+                <span class="material-icons-outlined">verified</span> Ag. Qualidade
+            </a>
+            <a href="#" class="nav-item" data-section="agent-vendas">
+                <span class="material-icons-outlined">storefront</span> Ag. Vendas
+            </a>
+            <a href="#" class="nav-item" data-section="agent-planejamento">
+                <span class="material-icons-outlined">calendar_month</span> Ag. Planejamento
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <small>Fit Film - Packing & Storage Solutions</small>
+            <small style="color:var(--magenta);">Powered by OpenAI GPT-4o</small>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-content">
+        <header class="topbar">
+            <button class="menu-toggle" id="menu-toggle"><span class="material-icons-outlined">menu</span></button>
+            <div class="topbar-title">
+                <h1 id="page-title">Visao Geral</h1>
+                <span class="topbar-badge">AUDITORIA 2024-2025</span>
+            </div>
+            <div class="topbar-actions">
+                <div class="status-indicator"></div>
+                <small>Sistema Ativo</small>
+            </div>
+        </header>
+
+        <main>
+            <!-- ===== VISAO GERAL ===== -->
+            <section id="section-overview" class="content-section active">
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Total Recebido</span><span class="material-icons-outlined kpi-icon green">payments</span></div>
+                        <div class="kpi-value green">R$ 35,5M</div>
+                        <div class="kpi-sub">62,2% do faturado | Meta: 85%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Total A Vencer</span><span class="material-icons-outlined kpi-icon blue">schedule</span></div>
+                        <div class="kpi-value">R$ 21,5M</div>
+                        <div class="kpi-sub">37,8% do faturado</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Total Vencido</span><span class="material-icons-outlined kpi-icon red">error</span></div>
+                        <div class="kpi-value red">R$ 11,6M</div>
+                        <div class="kpi-sub">20,4% do faturado | CRITICO</div>
+                    </div>
+                    <div class="kpi-card alert-card">
+                        <div class="kpi-header"><span class="kpi-label">Inadimplencia</span><span class="material-icons-outlined kpi-icon red">trending_up</span></div>
+                        <div class="kpi-value red">22,33%</div>
+                        <div class="kpi-sub">Benchmark: 3-5% | 4,5x acima</div>
+                    </div>
+                </div>
+                <div class="charts-row">
+                    <div class="chart-panel">
+                        <div class="panel-header">
+                            <h3>Evolucao Mensal - Recebimentos vs Inadimplencia</h3>
+                            <div class="panel-actions">
+                                <select id="chart-year-filter" onchange="updateCharts()">
+                                    <option value="all">2024-2025</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container"><canvas id="chart-evolution"></canvas></div>
+                    </div>
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Composicao Financeira</h3></div>
+                        <div class="chart-container"><canvas id="chart-composition"></canvas></div>
+                    </div>
+                </div>
+                <div class="charts-row">
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Em Dia vs Atrasados</h3></div>
+                        <div class="chart-container"><canvas id="chart-ontime"></canvas></div>
+                    </div>
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Taxa de Inadimplencia</h3></div>
+                        <div class="chart-container"><canvas id="chart-default-rate"></canvas></div>
+                    </div>
+                </div>
+                <!-- Graficos Avancados -->
+                <div class="charts-row">
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Radar - Saude Financeira por Indicador</h3></div>
+                        <div class="chart-container"><canvas id="chart-radar"></canvas></div>
+                    </div>
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Waterfall - Impacto das Anomalias no Faturamento</h3></div>
+                        <div class="chart-container"><canvas id="chart-waterfall"></canvas></div>
+                    </div>
+                </div>
+                <div class="table-panel">
+                    <div class="panel-header"><h3>Transacoes Reais Identificadas</h3></div>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Data</th><th>Descricao</th><th>Tipo</th><th>Valor</th><th>Status</th></tr></thead>
+                            <tbody id="transactions-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RECEBIMENTOS ===== -->
+            <section id="section-receivables" class="content-section">
+                <div class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Em Dia</span><span class="material-icons-outlined kpi-icon green">check_circle</span></div>
+                        <div class="kpi-value green">R$ 28,4M</div>
+                        <div class="kpi-sub">49,8% do faturado</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Atrasado</span><span class="material-icons-outlined kpi-icon orange">schedule</span></div>
+                        <div class="kpi-value orange">R$ 5,7M</div>
+                        <div class="kpi-sub">10% do faturado</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Taxa Atraso</span><span class="material-icons-outlined kpi-icon orange">trending_up</span></div>
+                        <div class="kpi-value orange">16,58%</div>
+                        <div class="kpi-sub">Benchmark: 5-8%</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header"><span class="kpi-label">Eficiencia</span><span class="material-icons-outlined kpi-icon blue">speed</span></div>
+                        <div class="kpi-value">61,75%</div>
+                        <div class="kpi-sub">Meta: 85-92%</div>
+                    </div>
+                </div>
+                <div class="charts-row">
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Recebimentos por Categoria</h3></div>
+                        <div class="chart-container"><canvas id="chart-receivables"></canvas></div>
+                    </div>
+                    <div class="chart-panel">
+                        <div class="panel-header"><h3>Meios de Pagamento</h3></div>
+                        <div class="chart-container"><canvas id="chart-clients"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== ANOMALIAS ===== -->
+            <section id="section-anomalies" class="content-section">
+                <div class="anomalies-grid" id="anomalies-grid"></div>
+            </section>
+
+            <!-- ===== MAPA MENTAL ===== -->
+            <section id="section-mindmap" class="content-section">
+                <div class="mindmap-container">
+                    <div class="panel-header" style="margin-bottom:18px;">
+                        <h3><span class="material-icons-outlined" style="color:var(--magenta);vertical-align:middle;">hub</span> Mapa Mental - Conexoes Financeiras da Auditoria</h3>
+                        <div class="panel-actions">
+                            <button onclick="resetMindmap()" class="btn-action"><span class="material-icons-outlined">refresh</span> Reset</button>
+                        </div>
+                    </div>
+                    <div id="mindmap-svg" class="mindmap-svg-wrapper"></div>
+                    <div class="mindmap-legend">
+                        <span><span class="legend-dot" style="background:var(--magenta);"></span> Empresa</span>
+                        <span><span class="legend-dot" style="background:var(--red);"></span> Anomalia Critica</span>
+                        <span><span class="legend-dot" style="background:var(--orange);"></span> Anomalia Alta</span>
+                        <span><span class="legend-dot" style="background:var(--cyan);"></span> Indicador</span>
+                        <span><span class="legend-dot" style="background:var(--green);"></span> Recomendacao</span>
+                        <span><span class="legend-dot" style="background:var(--yellow);"></span> Cliente/Fornecedor</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RELATORIO ===== -->
+            <section id="section-audit" class="content-section">
+                <div class="audit-report" id="audit-report"></div>
+            </section>
+
+            <!-- ===== CRM ===== -->
+            <section id="section-crm" class="content-section">
+                <div class="crm-header">
+                    <h2><span class="material-icons-outlined" style="color:var(--magenta);vertical-align:middle;">people</span> CRM Proprietario - Gestao de Clientes e Fornecedores</h2>
+                    <p style="color:var(--text-muted);margin-top:8px;">Gestao integrada com dados da auditoria financeira 2024-2025</p>
+                </div>
+                <div class="crm-stats" id="crm-stats"></div>
+                <div class="crm-filters">
+                    <input type="text" id="crm-search" placeholder="Buscar cliente/fornecedor..." oninput="filterCRM()">
+                    <select id="crm-type-filter" onchange="filterCRM()">
+                        <option value="all">Todos</option>
+                        <option value="Cliente">Clientes</option>
+                        <option value="Fornecedor">Fornecedores</option>
+                        <option value="Cliente/Parceiro">Parceiros</option>
+                    </select>
+                    <select id="crm-risk-filter" onchange="filterCRM()">
+                        <option value="all">Todos Riscos</option>
+                        <option value="critico">Critico</option>
+                        <option value="alto">Alto</option>
+                        <option value="medio">Medio</option>
+                        <option value="baixo">Baixo</option>
+                    </select>
+                </div>
+                <div class="crm-grid" id="crm-grid"></div>
+            </section>
+
+            <!-- ===== AGENTE MASTER (Cientista de Dados) ===== -->
+            <section id="section-agent-master" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full">
+                        <div class="chat-header-bar">
+                            <span class="material-icons-outlined">psychology</span>
+                            <div>
+                                <strong>Cientista de Dados Senior</strong>
+                                <small>Analise executiva completa | GPT-4o</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Ativar/Desativar audio">
+                                <span class="material-icons-outlined" id="global-audio-icon">volume_up</span>
+                            </button>
+                        </div>
+                        <div class="chat-messages" id="chat-master">
+                            <div class="msg bot">
+                                <div class="msg-avatar" title="Cientista de Dados">CD</div>
+                                <div class="msg-bubble">
+                                    Ola! Sou o <strong>Cientista de Dados Senior</strong> da auditoria financeira da Fit Film.<br><br>
+                                    Tenho acesso completo aos dados de <strong>Jan/2024 a Dez/2025</strong> e posso analisar qualquer aspecto financeiro da empresa.<br><br>
+                                    <strong>Posso ajudar com:</strong>
+                                    <ul>
+                                        <li>Diagnostico geral da saude financeira</li>
+                                        <li>Analise de anomalias e causas raiz</li>
+                                        <li>Planos de acao com ROI estimado</li>
+                                        <li>Cenarios futuros e projecoes</li>
+                                        <li>Benchmarks do setor de embalagens</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-suggestions" id="suggestions-master">
+                            <button onclick="askAgent('master', this.textContent)">Me de um diagnostico geral da saude financeira</button>
+                            <button onclick="askAgent('master', this.textContent)">O que deu errado no planejamento?</button>
+                            <button onclick="askAgent('master', this.textContent)">Qual o plano de acao para recuperar?</button>
+                            <button onclick="askAgent('master', this.textContent)">Quais cenarios temos para os proximos 12 meses?</button>
+                            <button onclick="askAgent('master', this.textContent)">Qual o risco real de insolvencia?</button>
+                            <button onclick="askAgent('master', this.textContent)">Onde estamos perdendo mais dinheiro?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-master" placeholder="Pergunte ao Cientista de Dados..." onkeypress="if(event.key==='Enter')sendAgentMsg('master')">
+                            <button onclick="sendAgentMsg('master')" id="btn-master"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AGENTE INADIMPLENCIA ===== -->
+            <section id="section-agent-inadimplencia" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full" style="border-left:3px solid var(--red);">
+                        <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--red-bg), rgba(244,67,54,0.05));">
+                            <span class="material-icons-outlined" style="color:var(--red);">money_off</span>
+                            <div>
+                                <strong>Agente de Inadimplencia</strong>
+                                <small>Especialista em cobranca e recuperacao de credito</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                        </div>
+                        <div class="chat-messages" id="chat-inadimplencia">
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--red);">IN</div><div class="msg-bubble">Sou o <strong>Agente de Inadimplencia</strong>. Taxa atual: <strong style="color:var(--red);">22,33%</strong> (4,5x acima do aceitavel). R$ 11,6M vencidos. Pergunte sobre estrategias de cobranca, perfil de inadimplentes, ou planos de recuperacao.</div></div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Qual o perfil dos maiores inadimplentes?</button>
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Como reduzir a inadimplencia de 22% para 5%?</button>
+                            <button onclick="askAgent('inadimplencia', this.textContent)">Quanto podemos recuperar dos R$ 11,6M vencidos?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-inadimplencia" placeholder="Pergunte sobre inadimplencia..." onkeypress="if(event.key==='Enter')sendAgentMsg('inadimplencia')">
+                            <button onclick="sendAgentMsg('inadimplencia')"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AGENTE CUSTOS ===== -->
+            <section id="section-agent-custos" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full" style="border-left:3px solid var(--orange);">
+                        <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--orange-bg), rgba(255,152,0,0.05));">
+                            <span class="material-icons-outlined" style="color:var(--orange);">trending_up</span>
+                            <div>
+                                <strong>Agente de Custos</strong>
+                                <small>Especialista em reducao de custos e eficiencia operacional</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                        </div>
+                        <div class="chat-messages" id="chat-custos">
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--orange);">CU</div><div class="msg-bubble">Sou o <strong>Agente de Custos</strong>. Detectei aumento de <strong style="color:var(--orange);">35%</strong> nos custos em Set/2024. Debito emergencial de R$ 138.000 com FRONERI. Margem caiu de 25% para 15%. Pergunte sobre otimizacao de custos.</div></div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button onclick="askAgent('custos', this.textContent)">O que causou o aumento de 35% nos custos?</button>
+                            <button onclick="askAgent('custos', this.textContent)">Como recuperar a margem de 25%?</button>
+                            <button onclick="askAgent('custos', this.textContent)">Quais fornecedores renegociar primeiro?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-custos" placeholder="Pergunte sobre custos..." onkeypress="if(event.key==='Enter')sendAgentMsg('custos')">
+                            <button onclick="sendAgentMsg('custos')"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AGENTE QUALIDADE ===== -->
+            <section id="section-agent-qualidade" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full" style="border-left:3px solid var(--cyan);">
+                        <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--cyan-bg), rgba(0,188,212,0.05));">
+                            <span class="material-icons-outlined" style="color:var(--cyan);">verified</span>
+                            <div>
+                                <strong>Agente de Qualidade</strong>
+                                <small>Especialista em controle de qualidade e processos</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                        </div>
+                        <div class="chat-messages" id="chat-qualidade">
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--cyan);">QA</div><div class="msg-bubble">Sou o <strong>Agente de Qualidade</strong>. Detectei crise em <strong style="color:var(--cyan);">Marco/2025</strong>: queda de 15% na receita por problemas de qualidade. Registros de "lote e quantidade divergente". Pergunte sobre controle de qualidade e processos.</div></div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button onclick="askAgent('qualidade', this.textContent)">O que causou o problema de qualidade em Marco/2025?</button>
+                            <button onclick="askAgent('qualidade', this.textContent)">Como implementar controle de qualidade eficaz?</button>
+                            <button onclick="askAgent('qualidade', this.textContent)">Qual o custo de nao ter qualidade?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-qualidade" placeholder="Pergunte sobre qualidade..." onkeypress="if(event.key==='Enter')sendAgentMsg('qualidade')">
+                            <button onclick="sendAgentMsg('qualidade')"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AGENTE VENDAS ===== -->
+            <section id="section-agent-vendas" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full" style="border-left:3px solid var(--green);">
+                        <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--green-bg), rgba(76,175,80,0.05));">
+                            <span class="material-icons-outlined" style="color:var(--green);">storefront</span>
+                            <div>
+                                <strong>Agente de Vendas</strong>
+                                <small>Especialista em estrategia comercial e receita</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                        </div>
+                        <div class="chat-messages" id="chat-vendas">
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--green);">VD</div><div class="msg-bubble">Sou o <strong>Agente de Vendas</strong>. Faturamento total: <strong style="color:var(--green);">R$ 57M</strong> em 24 meses. Queda critica de <strong style="color:var(--red);">60%</strong> em Jun/2024. Pergunte sobre estrategias de vendas, diversificacao e retencao de clientes.</div></div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button onclick="askAgent('vendas', this.textContent)">Por que as vendas cairam 60% em Junho/2024?</button>
+                            <button onclick="askAgent('vendas', this.textContent)">Como diversificar a base de clientes?</button>
+                            <button onclick="askAgent('vendas', this.textContent)">Qual estrategia para aumentar vendas em 30%?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-vendas" placeholder="Pergunte sobre vendas..." onkeypress="if(event.key==='Enter')sendAgentMsg('vendas')">
+                            <button onclick="sendAgentMsg('vendas')"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AGENTE PLANEJAMENTO ===== -->
+            <section id="section-agent-planejamento" class="content-section">
+                <div class="chat-wrapper">
+                    <div class="chat-panel-full" style="border-left:3px solid var(--yellow);">
+                        <div class="chat-header-bar" style="background:linear-gradient(135deg, var(--yellow-bg), rgba(253,216,53,0.05));">
+                            <span class="material-icons-outlined" style="color:var(--yellow);">calendar_month</span>
+                            <div>
+                                <strong>Agente de Planejamento</strong>
+                                <small>Especialista em planejamento estrategico e financeiro</small>
+                            </div>
+                            <button class="btn-audio-toggle" onclick="toggleGlobalAudio()" title="Audio"><span class="material-icons-outlined">volume_up</span></button>
+                        </div>
+                        <div class="chat-messages" id="chat-planejamento">
+                            <div class="msg bot"><div class="msg-avatar" style="background:var(--yellow);color:#333;">PL</div><div class="msg-bubble">Sou o <strong>Agente de Planejamento</strong>. O planejamento 2024-2025 falhou: inadimplencia 4,5x acima, 40% do faturamento nao virou caixa, 3 crises em 18 meses. Pergunte sobre o novo planejamento estrategico.</div></div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button onclick="askAgent('planejamento', this.textContent)">O que deu errado no planejamento anterior?</button>
+                            <button onclick="askAgent('planejamento', this.textContent)">Como criar um planejamento financeiro solido?</button>
+                            <button onclick="askAgent('planejamento', this.textContent)">Quais metas financeiras para 2026?</button>
+                        </div>
+                        <div class="chat-input-bar">
+                            <input type="text" id="input-planejamento" placeholder="Pergunte sobre planejamento..." onkeypress="if(event.key==='Enter')sendAgentMsg('planejamento')">
+                            <button onclick="sendAgentMsg('planejamento')"><span class="material-icons-outlined">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/mindmap.js"></script>
+    <script src="js/crm.js"></script>
+    <script src="js/agents.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
